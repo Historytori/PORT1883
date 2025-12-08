@@ -1,18 +1,21 @@
-/* ================================
-   PORT 1883 - STYLE.CSS
-================================ */
+/* ======================================
+   PORT 1883  ·  GLOBAL STYLE
+====================================== */
 
+/* 색상 팔레트 */
 :root {
   --bg: #f5f2ec;
-  --bg-deep: #0f172a;
+  --bg-alt: #f9f7f2;
   --ink: #111827;
-  --muted: #6b7280;
+  --muted: #4b5563;
   --accent: #c48c3c;
   --border: #d4d4d4;
   --card-bg: #ffffff;
 }
 
-/* RESET */
+/* ------------------------------
+   RESET & 기본 설정
+------------------------------ */
 * {
   margin: 0;
   padding: 0;
@@ -20,11 +23,12 @@
 }
 
 body {
-  font-family: "Pretendard", system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
   background-color: var(--bg);
   color: var(--ink);
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 1.7;
 }
 
 img {
@@ -33,11 +37,15 @@ img {
 }
 
 a {
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
 }
 
-/* LAYOUT */
+button {
+  font: inherit;
+}
+
+/* 공통 레이아웃 컨테이너 */
 .container {
   width: 100%;
   max-width: 1120px;
@@ -45,25 +53,25 @@ a {
   padding: 0 1.5rem;
 }
 
-/* ================================
+/* ======================================
    HEADER
-================================ */
+====================================== */
 
 header {
   position: sticky;
   top: 0;
   z-index: 20;
   backdrop-filter: blur(12px);
-  background: rgba(245, 242, 236, 0.9);
-  border-bottom: 1px solid rgba(17, 24, 39, 0.04);
+  background: rgba(245, 242, 236, 0.96);
+  border-bottom: 1px solid rgba(17, 24, 39, 0.06);
 }
 
 .header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 0;
   gap: 1.5rem;
+  padding: 0.75rem 0;
 }
 
 .brand-block {
@@ -73,7 +81,7 @@ header {
 }
 
 .brand-block img {
-  height: 64px;
+  height: 64px; /* 세로로 긴 로고 비율 유지 */
   width: auto;
 }
 
@@ -102,8 +110,8 @@ nav ul {
 
 nav a {
   position: relative;
-  color: #4b5563;
   padding-bottom: 0.3rem;
+  color: #4b5563;
 }
 
 nav a::after {
@@ -153,16 +161,18 @@ nav a:hover::after {
   }
 }
 
-/* ================================
-   HERO
-================================ */
+/* ======================================
+   HERO (16:9 슬라이드)
+====================================== */
 
 .hero {
   position: relative;
-  overflow: hidden;
-  height: min(80vh, 640px);
+  width: 100%;
+  aspect-ratio: 16 / 9; /* 모든 히어로 이미지를 16:9에 맞춤 */
+  max-height: 90vh;
   background: #111827;
   color: #f9fafb;
+  overflow: hidden;
 }
 
 .hero-slide {
@@ -181,16 +191,11 @@ nav a:hover::after {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-      circle at top left,
-      rgba(15, 23, 42, 0.05),
-      transparent 45%
-    ),
-    linear-gradient(
+  background: linear-gradient(
       120deg,
-      rgba(15, 23, 42, 0.85),
-      rgba(15, 23, 42, 0.55),
-      rgba(15, 23, 42, 0.9)
+      rgba(15, 23, 42, 0.88),
+      rgba(15, 23, 42, 0.65),
+      rgba(15, 23, 42, 0.92)
     );
   z-index: 1;
 }
@@ -207,11 +212,20 @@ nav a:hover::after {
   max-width: 540px;
 }
 
+/* 텍스트 가독성을 위한 반투명 패널 */
+.hero-panel {
+  background: rgba(15, 23, 42, 0.72);
+  padding: 1.6rem 1.9rem;
+  border-radius: 1.2rem;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.55);
+}
+
 .hero-kicker {
   font-size: 0.8rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   margin-bottom: 0.8rem;
+  color: #e5e7eb;
 }
 
 .hero-title {
@@ -271,6 +285,7 @@ nav a:hover::after {
   color: #fbbf24;
 }
 
+/* 히어로 하단 진행 바 */
 .hero-progress {
   position: absolute;
   bottom: 1.5rem;
@@ -294,20 +309,21 @@ nav a:hover::after {
   background: var(--accent);
 }
 
-/* ================================
-   SECTIONS
-================================ */
+/* ======================================
+   공통 SECTION 스타일
+====================================== */
 
 section {
   padding: 4rem 0;
 }
 
-section:nth-of-type(odd) {
-  background: #f5f2ec;
+/* hero를 제외한 섹션 배경만 번갈아 적용 */
+section:not(.hero):nth-of-type(odd) {
+  background: var(--bg);
 }
 
-section:nth-of-type(even) {
-  background: #f9f7f2;
+section:not(.hero):nth-of-type(even) {
+  background: var(--bg-alt);
 }
 
 .section-header {
@@ -319,23 +335,27 @@ section:nth-of-type(even) {
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--muted);
+  margin-bottom: 0.6rem;
 }
 
 .section-title {
   font-family: "Playfair Display", serif;
-  font-size: 1.8rem;
-  margin-bottom: 0.75rem;
+  font-size: 1.9rem;
+  margin-bottom: 0.9rem;
 }
 
 .section-sub {
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   color: var(--muted);
-  max-width: 32rem;
 }
 
-/* ================================
-   PHILOSOPHY
-================================ */
+.section-sub-narrow {
+  max-width: 36rem;
+}
+
+/* ======================================
+   BRAND PHILOSOPHY
+====================================== */
 
 .philosophy-grid {
   display: grid;
@@ -345,19 +365,20 @@ section:nth-of-type(even) {
 }
 
 .philosophy-body {
-  font-size: 0.98rem;
+  font-size: 1rem;
   color: #374151;
+  max-width: 40rem;
 }
 
 .philosophy-body p + p {
-  margin-top: 1rem;
+  margin-top: 1.1rem;
 }
 
 .philosophy-note {
   margin-top: 2rem;
   padding-top: 1.5rem;
   border-top: 1px solid rgba(156, 163, 175, 0.35);
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   color: var(--muted);
 }
 
@@ -386,11 +407,15 @@ section:nth-of-type(even) {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
+
+  .philosophy-body {
+    max-width: none;
+  }
 }
 
-/* ================================
-   PRODUCTS
-================================ */
+/* ======================================
+   PRODUCTS (SOAP COLLECTION)
+====================================== */
 
 .products-grid {
   display: grid;
@@ -428,9 +453,10 @@ section:nth-of-type(even) {
   box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
 }
 
+/* 제품 이미지도 16:9 비율 */
 .product-image-wrap {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 9;
   border-radius: 0.9rem;
   overflow: hidden;
   background: #e5e7eb;
@@ -454,9 +480,18 @@ section:nth-of-type(even) {
 }
 
 .product-desc {
-  font-size: 0.9rem;
-  color: #4b5563;
+  font-size: 0.92rem;
+  color: #374151;
   flex: 1 1 auto;
+  margin-bottom: 0.4rem;
+}
+
+/* 포장에 대한 설명 텍스트 */
+.product-packaging {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+  line-height: 1.8;
 }
 
 .product-footer {
@@ -502,9 +537,15 @@ section:nth-of-type(even) {
   margin-bottom: 0.3rem;
 }
 
-/* ================================
+/* ======================================
+   CONTACT / VISIT
+====================================== */
+
+/* 별도 스타일이 필요하면 여기에 추가 가능 */
+
+/* ======================================
    FOOTER
-================================ */
+====================================== */
 
 footer {
   padding: 2rem 0 2.8rem;

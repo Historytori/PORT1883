@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>PORT 1883 | Heritage Soap of Incheon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- 고급스러운 느낌의 폰트 -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Pretendard:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #f5f2ec;
+      --bg-deep: #0f172a;
+      --ink: #111827;
+      --muted: #6b7280;
+      --accent: #c48c3c;
+      --border: #d4d4d4;
+      --card-bg: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Pretendard", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background-color: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* 레이아웃 공통 */
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* 헤더 */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: rgba(245, 242, 236, 0.9);
+      border-bottom: 1px solid rgba(17, 24, 39, 0.04);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      gap: 1.5rem;
+    }
+
+    .brand-block {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand-block img {
+      height: 64px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .brand-text-main {
+      font-family: "Playfair Display", serif;
+      font-size: 1.3rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .brand-text-sub {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    nav a {
+      position: relative;
+      color: #4b5563;
+      padding-bottom: 0.3rem;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.25s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+    }
+
+    .nav-cta:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      .header-inner {
+        flex-direction: row;
+      }
+
+      nav ul {
+        gap: 1rem;
+        font-size: 0.78rem;
+      }
+
+      .brand-block img {
+        height: 54px;
+      }
+
+      .brand-text-main {
+        font-size: 1rem;
+      }
+
+      .brand-text-sub {
+        display: none;
+      }
+    }
+
+    /* 히어로 슬라이드 */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      height: min(80vh, 640px);
+      color: #f9fafb;
+      background: #111827;
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+          circle at top left,
+          rgba(15, 23, 42, 0.05),
+          transparent 45%
+        ),
+        linear-gradient(
+          120deg,
+          rgba(15, 23, 42, 0.85),
+          rgba(15, 23, 42, 0.55),
+          rgba(15, 23, 42, 0.9)
+        );
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-inner {
+      max-width: 540px;
+    }
+
+    .hero-kicker {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #e5e7eb;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.4rem, 4vw, 3.1rem);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .hero-sub {
+      font-size: 0.98rem;
+      color: #e5e7eb;
+      max-width: 32rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.7rem 1.4rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #111827;
+    }
+
+    .btn-primary:hover {
+      background: #e9b159;
+      border-color: #e9b159;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: rgba(249, 250, 251, 0.6);
+      color: #f9fafb;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: #fbbf24;
+    }
+
+    .hero-progress {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.5rem;
+      z-index: 3;
+    }
+
+    .hero-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(249, 250, 251, 0.4);
+      transition: all 0.25s ease;
+    }
+
+    .hero-dot.active {
+      width: 18px;
+      background: var(--accent);
+    }
+
+    /* 섹션 공통 */
+    section {
+      padding: 4rem 0;
+    }
+
+    section:nth-of-type(odd) {
+      background: #f5f2ec;
+    }
+
+    section:nth-of-type(even) {
+      background: #f9f7f2;
+    }
+
+    .section-header {
+      text-align: left;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-kicker {
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: "Playfair Display", serif;
+      font-size: 1.8rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-sub {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 32rem;
+    }
+
+    /* 브랜드 철학 */
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .philosophy-body {
+      font-size: 0.98rem;
+      color: #374151;
+    }
+
+    .philosophy-body p + p {
+      margin-top: 1rem;
+    }
+
+    .philosophy-note {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(156, 163, 175, 0.35);
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .philosophy-card {
+      background: var(--card-bg);
+      border-radius: 1rem;
+      padding: 1.6rem 1.8rem;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.05);
+    }
+
+    .philosophy-card h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .philosophy-meta {
+      margin-top: 1.1rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 880px) {
+      .philosophy-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2rem;
+      }
+    }
+
+    /* 제품 섹션 */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1.8rem;
+    }
+
+    @media (max-width: 1024px) {
+      .products-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .products-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border-radius: 1.2rem;
+      padding: 1.4rem 1.4rem 1.6rem;
+      border: 1px solid rgba(209, 213, 219, 0.8);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: transform 0.18s ease, box-shadow 0.18s ease,
+        border-color 0.18s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(148, 163, 184, 0.95);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+    }
+
+    .product-image-wrap {
+      width: 100%;
+      aspect-ratio: 4/3;
+      border-radius: 0.9rem;
+      overflow: hidden;
+      background: #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .product-name {
+      font-family: "Playfair Display", serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .product-tagline {
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .product-desc {
+      font-size: 0.9rem;
+      color: #4b5563;
+      flex: 1 1 auto;
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 0.4rem;
+    }
+
+    .product-price {
+      font-weight: 600;
+      font-size: 0.98rem;
+    }
+
+    .product-cta {
+      font-size: 0.8rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      background: #f9fafb;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .product-cta:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: #fefce8;
+    }
+
+    .product-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      background: #fef3c7;
+      color: #92400e;
+      margin-bottom: 0.3rem;
+    }
+
+    footer {
+      padding: 2rem 0 2.8rem;
+      background: #111827;
+      color: #9ca3af;
+      font-size: 0.82rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      max-width: 280px;
+    }
+
+    .footer-brand-title {
+      font-family: "Playfair Display", serif;
+      font-size: 1.1rem;
+      color: #e5e7eb;
+      margin-bottom: 0.4rem;
+    }
+
+    .footer-menu {
+      display: flex;
+      gap: 1.8rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-menu-group h4 {
+      font-size: 0.85rem;
+      color: #e5e7eb;
+      margin-bottom: 0.45rem;
+    }
+
+    .footer-menu-group ul {
+      list-style: none;
+      display: grid;
+      gap: 0.25rem;
+    }
+
+    .footer-menu-group a {
+      color: #9ca3af;
+    }
+
+    .footer-menu-group a:hover {
+      color: #f3f4f6;
+    }
+  </style>
+</head>
+<body>
+  <!-- 헤더 -->
+  <header>
+    <div class="container header-inner">
+      <div class="brand-block">
+        <!-- 세로 비율 긴 logo.png -->
+        <img src="logo.png" alt="PORT 1883 Logo" />
+        <div>
+          <div class="brand-text-main">PORT 1883</div>
+          <div class="brand-text-sub">HERITAGE SOAP OF INCHEON</div>
+        </div>
+      </div>
+      <nav aria-label="메인 메뉴">
+        <ul>
+          <li><a href="#philosophy">Philosophy</a></li>
+          <li><a href="#products">Collection</a></li>
+          <li><a href="#journal">Journal</a></li>
+          <li><a href="#contact" class="nav-cta">Visit Port</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 히어로 섹션 -->
+  <section class="hero" aria-label="PORT 1883 대표 이미지">
+    <!-- 슬라이드 이미지 다섯 장 -->
+    <div
+      class="hero-slide active"
+      style="background-image: url('hero0.png')"
+    ></div>
+    <div class="hero-slide" style="background-image: url('hero1.png')"></div>
+    <div class="hero-slide" style="background-image: url('hero2.png')"></div>
+    <div class="hero-slide" style="background-image: url('hero3.png')"></div>
+    <div class="hero-slide" style="background-image: url('hero4.png')"></div>
+
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-content">
+      <div class="hero-inner">
+        <div class="hero-kicker">HERITAGE SOAP OF INCHEON</div>
+        <h1 class="hero-title">
+          1883년 개항의 기억을<br />
+          한 장의 비누에 담아냅니다.
+        </h1>
+        <p class="hero-sub">
+          PORT 1883는 인천 동쪽 항구 도시에서 태어난 하이앤드 비누
+          브랜드입니다. 한때 비누 공장이 즐비했던 개항장의 공기와 바다의
+          소금을, 오늘의 감각으로 다시 빚어 올립니다.
+        </p>
+        <div class="hero-actions">
+          <a href="#products" class="btn-primary">컬렉션 보기</a>
+          <a href="#philosophy" class="btn-ghost">브랜드 이야기</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-progress" aria-hidden="true">
+      <span class="hero-dot active"></span>
+      <span class="hero-dot"></span>
+      <span class="hero-dot"></span>
+      <span class="hero-dot"></span>
+      <span class="hero-dot"></span>
+    </div>
+  </section>
+
+  <!-- 브랜드 철학 -->
+  <section id="philosophy">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-kicker">BRAND PHILOSOPHY</div>
+        <h2 class="section-title">사라진 항구의 향기를 다시 켜다</h2>
+        <p class="section-sub">
+          PORT 1883는 한 도시의 산업 역사와 생활 문화를 잊지 않기 위해
+          만들어졌습니다. 인천이 처음 세계를 향해 열린 그 순간의 공기와
+          빛, 사람들의 손길을 오늘의 일상 속에 되돌려 놓는 것이 우리의
+          목표입니다.
+        </p>
+      </div>
+
+      <div class="philosophy-grid">
+        <div class="philosophy-body">
+          <p>
+            1883년, 인천이 개항하며 수많은 배와 사람, 문화가 드나들었습니다.
+            비누는 그 속에서 가장 일상적이면서도 가장 혁신적인 물건
+            중 하나였습니다. 항구로 들어온 기름과 향료, 새로운 위생 개념은
+            작은 공장과 가게들을 통해 전국으로 퍼져 나갔습니다.
+          </p>
+          <p>
+            PORT 1883는 그 시대의 정신을 오늘의 기준으로 다시 해석합니다.
+            과도한 장식을 덜어내고, 좋은 원료와 균형 잡힌 향, 손에 남는 감촉에
+            집중합니다. 오래된 인쇄물과 항구의 간판에서 가져온 서체,
+            근대 건축에서 영감을 얻은 패턴을 통해 브랜드의 모든 요소가
+            같은 이야기를 말하도록 디자인했습니다.
+          </p>
+          <p>
+            우리는 비누를 단순한 소비재가 아닌, 한 도시의 기억을 담은
+            작은 기념품이라고 생각합니다. 욕실 한 켠에서, 세면대 위에서
+            PORT 1883의 비누를 집어 드는 순간마다 인천이라는 항구 도시의
+            시간 위를 잠시 산책할 수 있기를 바랍니다.
+          </p>
+
+          <div class="philosophy-note">
+            PORT 1883의 모든 컬렉션은 인천이라는 도시와 그 주변 해안,
+            그리고 개항장의 풍경에서 출발합니다. 제품 라인마다 다른 역사
+            모티브를 가지고 있으나, 하나의 질문은 동일합니다. “우리는
+            이 도시의 기억을 어떻게 오늘의 향과 재료로 번역할 것인가?”
+          </div>
+        </div>
+
+        <aside class="philosophy-card" id="journal">
+          <h3>PORT 1883 JOURNAL</h3>
+          <p>
+            동인천 골목의 간판, 개항기 건물의 벽돌, 바다를 향해 난 철길과
+            부두의 소리. PORT 1883는 도시의 풍경을 관찰하고 기록하는 것에서
+            시작됩니다. 우리는 한 장의 비누를 만들기 전, 먼저 그 장소의
+            공기와 이야기를 수집합니다.
+          </p>
+          <p style="margin-top: 0.8rem">
+            앞으로 저널에서는 인천의 오래된 사진과 지도, 사라져가는 건물들,
+            그리고 그곳에서 영감을 받은 새로운 비누 레시피를 차곡차곡
+            소개할 예정입니다.
+          </p>
+          <div class="philosophy-meta">
+            Coming soon – PORT 1883가 발견한 인천의 단편들을 차례로
+            공유합니다.
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- 제품 컬렉션 -->
+  <section id="products">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-kicker">SOAP COLLECTION</div>
+        <h2 class="section-title">PORT 1883 시그니처 라인업</h2>
+        <p class="section-sub">
+          네 가지 비누는 서로 다른 인천의 풍경을 담고 있습니다. 모든 제품의
+          가격은 개당 <strong>7,900원</strong>입니다.
+        </p>
+      </div>
+
+      <div class="products-grid">
+        <!-- SORAESALT -->
+        <article class="product-card">
+          <div class="product-image-wrap">
+            <img src="soap1.png" alt="SORAESALT 소래염전 비누" />
+          </div>
+          <div class="product-badge">SALT SOAP</div>
+          <h3 class="product-name">SORAESALT</h3>
+          <div class="product-tagline">SOLAR SALT FROM SORAE TIDELAND</div>
+          <p class="product-desc">
+            수도권 마지막 갯벌이자 천일염 산업의 발원지였던 소래염전에서
+            영감을 받은 소금 비누입니다. 한때 전국 생산량의 대부분을
+            책임졌던 소래의 천일염처럼, 이 비누는 단단하면서도 부드러운
+            거품을 선사합니다.
+            <br /><br />
+            애경 비누공장이 사라지고, 과거 염창과 창고들이 하나둘
+            자취를 감춘 자리에서 PORT 1883는 다시 한 번 묻습니다.
+            “우리는 무엇을 남길 것인가?” SORAESALT는 주차장이 되어버린
+            공장 부지 대신, 욕실 한 켠에서 소래의 역사를 조용히 불러냅니다.
+          </p>
+          <div class="product-footer">
+            <span class="product-price">7,900원</span>
+            <button class="product-cta" type="button">자세히 보기</button>
+          </div>
+        </article>
+
+        <!-- PAGUM -->
+        <article class="product-card">
+          <div class="product-image-wrap">
+            <img src="soap2.png" alt="PAGUM 비누" />
+          </div>
+          <h3 class="product-name">PAGUM</h3>
+          <div class="product-tagline">BLUE & BLACK CITY NIGHT</div>
+          <p class="product-desc">
+            파란 바다와 검은 도시의 밤을 닮은 비누입니다. 인천을 상징하는
+            깊은 블루와 차분한 다크 톤을 두 겹으로 쌓아 올려, 세안할 때마다
+            항구 도시의 야경을 떠올리게 합니다. 시원한 마린 노트와 잔잔한
+            머스크가 어우러진 향이 특징입니다.
+          </p>
+          <div class="product-footer">
+            <span class="product-price">7,900원</span>
+            <button class="product-cta" type="button">자세히 보기</button>
+          </div>
+        </article>
+
+        <!-- PORT1883 -->
+        <article class="product-card">
+          <div class="product-image-wrap">
+            <img src="soap3.png" alt="PORT1883 헤리티지 비누" />
+          </div>
+          <h3 class="product-name">PORT1883</h3>
+          <div class="product-tagline">THE ORIGINAL HERITAGE BAR</div>
+          <p class="product-desc">
+            브랜드의 이름을 그대로 붙인 시그니처 바입니다. 개항기 인천항의
+            목재 부두와 벽돌 건물을 떠올리며, 오크·시더우드·베티버를
+            중심으로 한 드라이한 우디 향을 입혔습니다. 클래식한 직사각형
+            금형에 PORT 1883 로고를 깊게 새겨, 손에 쥐는 순간부터 다른
+            비누와 구분되는 존재감을 줍니다.
+          </p>
+          <div class="product-footer">
+            <span class="product-price">7,900원</span>
+            <button class="product-cta" type="button">자세히 보기</button>
+          </div>
+        </article>
+
+        <!-- LANDERS ORANGE -->
+        <article class="product-card">
+          <div class="product-image-wrap">
+            <img src="soap4.png" alt="LANDERS ORANGE 비누" />
+          </div>
+          <h3 class="product-name">LANDERS ORANGE</h3>
+          <div class="product-tagline">CITRUS FIELD BY THE SEA</div>
+          <p class="product-desc">
+            인천의 바람과 야구장의 환호를 동시에 담아낸 시트러스 비누입니다.
+            선명한 오렌지 컬러와 자몽·만다린 노트가 샤워 후에도 오래 남는
+            상쾌함을 제공합니다. 포말이 풍성해 운동 후 샤워용으로 특히
+            사랑받는 라인입니다.
+          </p>
+          <div class="product-footer">
+            <span class="product-price">7,900원</span>
+            <button class="product-cta" type="button">자세히 보기</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 간단한 연락/방문 정보 자리 -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-kicker">VISIT PORT 1883</div>
+        <h2 class="section-title">동인천에서 만나는 헤리티지 소프 샵</h2>
+        <p class="section-sub">
+          PORT 1883 오프라인 스토어는 동인천 차이나타운 인근 로컬 골목 안에
+          자리 잡은 작은 비누 공방이자 기록실입니다. 정식 오픈 일정과
+          위치는 추후 공지될 예정입니다.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 푸터 -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="footer-brand-title">PORT 1883</div>
+        <p>
+          Heritage Soap of Incheon.  
+          개항기의 공기와 바다의 소금을 오늘의 비누로 빚어 올립니다.
+        </p>
+      </div>
+
+      <div class="footer-menu">
+        <div class="footer-menu-group">
+          <h4>Brand</h4>
+          <ul>
+            <li><a href="#philosophy">Philosophy</a></li>
+            <li><a href="#journal">Journal</a></li>
+          </ul>
+        </div>
+        <div class="footer-menu-group">
+          <h4>Collection</h4>
+          <ul>
+            <li><a href="#products">SORAESALT</a></li>
+            <li><a href="#products">PAGUM</a></li>
+            <li><a href="#products">PORT1883</a></li>
+            <li><a href="#products">LANDERS ORANGE</a></li>
+          </ul>
+        </div>
+        <div class="footer-menu-group">
+          <h4>Contact</h4>
+          <ul>
+            <li>info@port1883.com (예시)</li>
+            <li>Incheon, Korea</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 슬라이더 스크립트 -->
+  <script>
+    (function () {
+      const slides = document.querySelectorAll(".hero-slide");
+      const dots = document.querySelectorAll(".hero-dot");
+      let current = 0;
+      const interval = 5000;
+
+      function goToSlide(index) {
+        slides[current].classList.remove("active");
+        dots[current].classList.remove("active");
+        current = index;
+        slides[current].classList.add("active");
+        dots[current].classList.add("active");
+      }
+
+      function nextSlide() {
+        const nextIndex = (current + 1) % slides.length;
+        goToSlide(nextIndex);
+      }
+
+      let timer = setInterval(nextSlide, interval);
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          clearInterval(timer);
+          goToSlide(index);
+          timer = setInterval(nextSlide, interval);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

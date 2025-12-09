@@ -4,47 +4,64 @@
   <meta charset="UTF-8" />
   <title>PORT 1883 | Heritage Soap of Incheon</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- 폰트 -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet" />
+  <!-- 메인 스타일 -->
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
+  <!-- 헤더 -->
+  <header>
+    <div class="container header-inner">
+      <div class="brand-block">
+        <img src="images/logo.png" alt="PORT 1883 Logo" />
+        <div>
+          <div class="brand-text-main">PORT 1883</div>
+          <div class="brand-text-sub">HERITAGE SOAP OF INCHEON</div>
+        </div>
+      </div>
+      <nav aria-label="메인 메뉴">
+        <ul>
+          <li><a href="#philosophy">Philosophy</a></li>
+          <li><a href="#products">Collection</a></li>
+          <li><a href="#packaging">Packaging</a></li>
+          <li><a href="#contact" class="nav-cta">Visit Port</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-  <!-- ===============================
-       BRAND OPENING LOGO SECTION
-       =============================== -->
-  <section class="brand-opening">
-    <img src="images/logo.png" alt="PORT1883 Logo" class="opening-logo" />
-    <h1 class="opening-title">PORT 1883</h1>
-    <div class="opening-sub">HERITAGE SOAP OF INCHEON</div>
-  </section>
-
-  <!-- ===============================
-       HERO
-       =============================== -->
-  <section class="hero">
-
-    <div class="hero-bg">
-      <img src="images/hero0.png" alt="Hero Image">
+  <!-- 히어로 섹션 -->
+  <section class="hero" aria-label="PORT 1883 대표 이미지">
+    <!-- 슬라이드 이미지 -->
+    <div class="hero-slide active">
+      <img src="images/hero0.png" alt="PORT 1883 Heritage Soap hero 0" />
+    </div>
+    <div class="hero-slide">
+      <img src="images/hero1.png" alt="PORT 1883 Heritage Soap hero 1" />
+    </div>
+    <div class="hero-slide">
+      <img src="images/hero2.png" alt="PORT 1883 Heritage Soap hero 2" />
+    </div>
+    <div class="hero-slide">
+      <img src="images/hero3.png" alt="PORT 1883 Heritage Soap hero 3" />
+    </div>
+    <div class="hero-slide">
+      <img src="images/hero4.png" alt="PORT 1883 Heritage Soap hero 4" />
     </div>
 
-    <div class="hero-overlay"></div>
-
     <div class="container hero-content">
-      <div class="hero-text-block">
+      <div class="hero-inner hero-panel">
         <div class="hero-kicker">HERITAGE SOAP OF INCHEON</div>
-
-        <h2 class="hero-title">
-          1883년 개항의 기억을  
-          비누 한 장에 담습니다.
-        </h2>
-
+        <h1 class="hero-title">
+          1883년 개항의 기억을 비누 한 장에 담습니다.
+        </h1>
         <p class="hero-sub">
-          PORT 1883는 동인천에서 태어난 하이엔드 비누 브랜드입니다.
-          사라진 비누 공장의 시간과 항구의 바람을 오늘의 감각으로 빚어
-          손끝에서 느껴지는 향과 질감으로 다시 전합니다.
+          PORT 1883는 동인천에서 태어난 하이앤드 비누 브랜드입니다.
+          사라진 비누 공장의 시간과 항구의 바람을 오늘의 감각으로 빚어,
+          손에 쥘 수 있는 향과 질감으로 전합니다.
         </p>
-
         <div class="hero-actions">
           <a href="#products" class="btn-primary">컬렉션 보기</a>
           <a href="#philosophy" class="btn-ghost">브랜드 이야기</a>
@@ -52,170 +69,289 @@
       </div>
     </div>
 
+    <div class="hero-progress" aria-hidden="true">
+      <span class="hero-dot active"></span>
+      <span class="hero-dot"></span>
+      <span class="hero-dot"></span>
+      <span class="hero-dot"></span>
+      <span class="hero-dot"></span>
+    </div>
   </section>
 
-
-  <!-- ===============================
-       BRAND PHILOSOPHY + JOURNAL
-       =============================== -->
+  <!-- 브랜드 철학 -->
   <section id="philosophy">
     <div class="container">
-
       <div class="section-header">
         <div class="section-kicker">BRAND PHILOSOPHY</div>
         <h2 class="section-title">사라진 비누 공장의 기억을 잇다</h2>
         <p class="section-sub section-sub-narrow">
           PORT 1883는 동인천의 비누 산업사에서 출발합니다.
           1912년 인천 중구에는 우리나라 최대 규모의 비누 공장 중 하나였던 ‘애경사’가 세워졌습니다.
+          항구로 들어온 기름과 향료, 천일염이 이곳에서 비누로 태어나 전국으로 퍼져 나갔습니다.
         </p>
       </div>
 
-      <div class="philosophy-journal-grid">
-
-        <!-- LEFT SIDE – BRAND PHILOSOPHY -->
+      <div class="philosophy-grid">
         <div class="philosophy-body">
           <p>
-            애경사 건물은 긴 세월을 버텼지만, 결국 충분한 연구와 기록 없이 철거되었습니다.
-            붉은 벽돌과 공장의 기억은 주차장의 선들로 대체되었고,
-            도시의 중요한 산업사 한 조각이 사라졌습니다.
+            긴 세월이 흐른 뒤, 애경사 건물은 제대로 된 연구나 기록도 남기지 못한 채
+            주차장을 짓기 위해 철거되었습니다. 붉은 벽돌과 굴뚝, 공장의 소리 대신
+            흰 선으로 나뉜 주차 면만이 그 자리를 채우게 되었습니다.
           </p>
-
           <p>
-            PORT 1883는 바로 그 지점에서 시작됩니다.
-            사라진 건물을 되돌릴 수는 없지만,
-            그 공장에서 시작된 인천의 비누 역사를 오늘의 언어로 다시 이어갈 수 있다고 믿습니다.
-          </p>
-
-          <p>
-            로고의 장식과 패키지의 패턴에는 개항기 인천의 간판, 벽돌의 질감,
+            PORT 1883는 바로 그 지점에서 시작합니다.
+            잃어버린 공장을 그대로 되돌릴 수는 없지만,
+            그 공장에서 시작된 인천의 비누 역사를 오늘의 언어로 다시 이야기할 수 있다고 믿습니다.
+            로고의 장식과 서체, 패키지의 패턴에는 개항기 인천의 간판과 벽돌,
             항구의 실루엣이 조용히 스며 있습니다.
           </p>
-        </div>
-
-
-        <!-- RIGHT SIDE – JOURNAL (BOOK STYLE) -->
-        <div class="journal-card">
-          <div class="journal-image">
-            <img src="images/factory.png" alt="애경사 비누공장">
-          </div>
-
-          <h3 class="journal-title">PORT 1883 JOURNAL</h3>
-
-          <p class="journal-text">
-            PORT 1883 JOURNAL은 ‘도시의 기록을 책처럼 남긴다’는 철학에서 출발합니다.
-            오래된 지도의 질감, 사라진 건물의 스케치, 개항기 인천항의 풍경을
-            매거진과 같은 형식으로 정리해 소개할 예정입니다.
+          <p>
+            PORT 1883의 비누 한 장은 단지 세안을 위한 제품이 아닙니다.
+            “이 도시의 기억을 어떻게 일상 속에서 계속 만질 수 있을까”에 대한 하나의 답입니다.
+            동인천 골목을 걸을 때, 소래의 갯벌과 소금창고를 떠올릴 때,
+            이 비누가 그 기억을 불러오는 작은 단서가 되기를 바랍니다.
           </p>
 
-          <button class="journal-btn">자세히 보기</button>
+          <div class="philosophy-note">
+            동인천의 개항 역사와 애경사 비누공장, 그리고 소래염전의 천일염 문화.
+            PORT 1883는 이 세 가지 축을 따라 인천만의 향과 질감을 천천히 탐구합니다.
+            서로 다른 장소에서 출발한 제품들이지만,
+            모두 “사라진 것들을 다시 불러오는 비누”라는 하나의 목표로 이어져 있습니다.
+          </div>
         </div>
 
+        <aside class="philosophy-card" id="journal">
+          <div class="journal-image">
+            <img src="images/factory.png" alt="동인천 애경사 비누공장 사진" />
+          </div>
+          <h3>PORT 1883 JOURNAL</h3>
+          <p>
+            동인천 골목의 간판, 개항기 건물의 벽돌, 바다를 향해 난 철길과 부두의 소리.
+            PORT 1883는 도시의 풍경을 관찰하고 기록하는 것에서 시작합니다.
+          </p>
+          <p>
+            앞으로 저널에서는 인천의 오래된 사진과 지도, 사라져가는 건물들,
+            그리고 그곳에서 영감을 받은 새로운 비누 레시피를 차곡차곡 소개할 예정입니다.
+          </p>
+          <div class="philosophy-meta">
+            Coming soon – PORT 1883가 발견한 인천의 단편들을 차례로 공유합니다.
+          </div>
+        </aside>
       </div>
     </div>
   </section>
 
-
-
-  <!-- ===============================
-       PRODUCT LIST (요약 설명)
-       =============================== -->
+  <!-- 제품 컬렉션 -->
   <section id="products">
     <div class="container">
       <div class="section-header">
         <div class="section-kicker">SOAP COLLECTION</div>
-        <h2 class="section-title">시그니처 라인업</h2>
+        <h2 class="section-title">PORT 1883 시그니처 라인업</h2>
         <p class="section-sub section-sub-narrow">
-          인천의 풍경을 네 가지 향과 색으로 표현한 대표 비누 라인입니다.
+          네 가지 비누는 서로 다른 인천의 풍경을 담고 있습니다.
+          모든 제품의 가격은 개당 <strong>7,900원</strong>입니다.
         </p>
       </div>
 
       <div class="products-grid">
-
+        <!-- SORAESALT -->
         <article class="product-card">
           <div class="product-image-wrap">
-            <img src="images/soap1.png" alt="">
+            <img src="images/soap1.png" alt="SORAESALT 소래염전 비누" />
           </div>
           <h3 class="product-name">SORAESALT</h3>
-          <div class="product-desc">소래염전의 바람을 담은 소금 비누.</div>
+          <div class="product-tagline">SOLAR SALT FROM SORAE</div>
+          <p class="product-desc">
+            소래습지의 천일염과 바람을 담아낸 개운한 소금 비누입니다.
+          </p>
           <div class="product-footer">
             <span class="product-price">7,900원</span>
-            <button class="product-cta">자세히 보기</button>
+            <button class="product-cta" type="button">자세히 보기</button>
           </div>
         </article>
 
+        <!-- PAGUM -->
         <article class="product-card">
           <div class="product-image-wrap">
-            <img src="images/soap2.png" alt="">
+            <img src="images/soap2.png" alt="PAGUM 비누" />
           </div>
           <h3 class="product-name">PAGUM</h3>
-          <div class="product-desc">파랑과 검정의 도시 풍경을 닮은 마린 노트.</div>
+          <div class="product-tagline">BLUE & BLACK CITY NIGHT</div>
+          <p class="product-desc">
+            파란 바다와 검은 도시의 밤을 닮은 시원한 마린 머스크 비누입니다.
+          </p>
           <div class="product-footer">
             <span class="product-price">7,900원</span>
-            <button class="product-cta">자세히 보기</button>
+            <button class="product-cta" type="button">자세히 보기</button>
           </div>
         </article>
 
+        <!-- PORT1883 -->
         <article class="product-card">
           <div class="product-image-wrap">
-            <img src="images/soap3.png" alt="">
+            <img src="images/soap3.png" alt="PORT1883 헤리티지 비누" />
           </div>
           <h3 class="product-name">PORT1883</h3>
-          <div class="product-desc">인천항의 우디한 감성을 담은 대표 바.</div>
+          <div class="product-tagline">THE HERITAGE BAR</div>
+          <p class="product-desc">
+            개항기 인천항의 목재 부두와 벽돌 건물을 떠올리게 하는 우디 노트의 시그니처 바입니다.
+          </p>
           <div class="product-footer">
             <span class="product-price">7,900원</span>
-            <button class="product-cta">자세히 보기</button>
+            <button class="product-cta" type="button">자세히 보기</button>
           </div>
         </article>
 
+        <!-- LANDERS ORANGE -->
         <article class="product-card">
           <div class="product-image-wrap">
-            <img src="images/soap4.png" alt="">
+            <img src="images/soap4.png" alt="LANDERS ORANGE 비누" />
           </div>
           <h3 class="product-name">LANDERS ORANGE</h3>
-          <div class="product-desc">바다와 스포츠의 에너지를 담은 시트러스.</div>
+          <div class="product-tagline">CITRUS FIELD BY THE SEA</div>
+          <p class="product-desc">
+            인천의 야구장과 바닷바람을 연상시키는 상큼한 시트러스 비누입니다.
+          </p>
           <div class="product-footer">
             <span class="product-price">7,900원</span>
-            <button class="product-cta">자세히 보기</button>
+            <button class="product-cta" type="button">자세히 보기</button>
           </div>
         </article>
-
       </div>
     </div>
   </section>
 
-
-  <!-- ===============================
-       PACKAGING SECTION
-       =============================== -->
-  <section id="packaging">
+  <!-- 포장 스토리 & 독립공채 모티프 -->
+  <section id="packaging" class="packaging-section">
     <div class="container">
       <div class="section-header">
         <div class="section-kicker">PACKAGING</div>
-        <h2 class="section-title">기억을 감싸는 포장</h2>
+        <h2 class="section-title">한 장의 상자에 담긴 약속</h2>
         <p class="section-sub section-sub-narrow">
-          독립공채표(대한독립공채표)의 문양과 서체를 재해석하여 만든 패키지입니다.
+          PORT 1883의 비누는 향과 성분뿐 아니라, 마지막에 감싸지는 종이까지
+          이 도시의 역사와 연결되어 있습니다.
         </p>
       </div>
 
       <div class="packaging-grid">
-        <div class="pack-text">
+        <div class="packaging-text">
           <p>
-            포장지 디자인은 대한민국 임시정부가 독립운동 자금을 마련하기 위해 발행했던
-            독립공채표의 문양에서 영감을 얻었습니다.
+            포장지는 대한민국 임시정부가 독립운동 자금을 마련하기 위해 발행했던
+            ‘독립공채표(獨立公債票, 대한독립공채표)’에서 모티프를 가져왔습니다.
+            당시 채권의 장식과 활자, 여백을 현대적으로 재구성해,
+            비누 한 장이 작은 증서처럼 느껴지도록 디자인했습니다.
           </p>
           <p>
-            모든 비누는 이 포장지로 정성스럽게 감싸지고,
-            수익의 일부는 일본군 ‘위안부’ 피해자 및 강제징용 피해자 지원 단체에 기부됩니다.
+            모든 비누는 이 포장지로 정성스럽게 싸인 뒤, 삼끈을 감고 붉은 왁스 씰로 마감됩니다.
+            조금 느리더라도 한 상자 한 상자를 손으로 마무리하는 과정을 통해
+            “당신의 일상을 가볍게 여기지 않는다”는 마음을 전하고자 합니다.
+          </p>
+          <p class="packaging-donation">
+            독립공채를 닮은 이 포장은 과거의 빚을 잊지 않겠다는 약속이기도 합니다.
+            PORT 1883는 판매 수익의 일부를 일본군 ‘위안부’ 피해자와 강제징용 피해자들을
+            지원하는 공익 단체에 기부할 예정입니다.
+            한 장의 비누를 고르는 일이, 오늘의 인천을 사랑하는 동시에
+            아직 치유되지 못한 역사에 조용히 연대하는 선택이 되기를 바랍니다.
           </p>
         </div>
 
-        <div class="pack-imgs">
-          <img src="images/packing1.png" alt="">
-          <img src="images/packing2.png" alt="">
+        <div class="packaging-images">
+          <div class="packaging-photo">
+            <img src="images/packing1.png" alt="독립공채 모티프 포장 비누 1" />
+          </div>
+          <div class="packaging-photo">
+            <img src="images/packing2.png" alt="독립공채 모티프 포장 비누 2" />
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- 방문 정보 -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-kicker">VISIT PORT 1883</div>
+        <h2 class="section-title">동인천에서 만나는 헤리티지 소프 샵</h2>
+        <p class="section-sub section-sub-narrow">
+          PORT 1883 오프라인 스토어는 동인천 차이나타운 인근 로컬 골목 안에 자리 잡은
+          작은 비누 공방이자 기록실입니다.
+          정식 오픈 일정과 위치는 추후 공지될 예정입니다.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 푸터 -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="footer-brand-title">PORT 1883</div>
+        <p>
+          Heritage Soap of Incheon.<br />
+          개항기의 공기와 바다의 소금을 오늘의 비누로 빚어 올립니다.
+        </p>
+      </div>
+
+      <div class="footer-menu">
+        <div class="footer-menu-group">
+          <h4>Brand</h4>
+          <ul>
+            <li><a href="#philosophy">Philosophy</a></li>
+            <li><a href="#journal">Journal</a></li>
+          </ul>
+        </div>
+        <div class="footer-menu-group">
+          <h4>Collection</h4>
+          <ul>
+            <li><a href="#products">SORAESALT</a></li>
+            <li><a href="#products">PAGUM</a></li>
+            <li><a href="#products">PORT1883</a></li>
+            <li><a href="#products">LANDERS ORANGE</a></li>
+          </ul>
+        </div>
+        <div class="footer-menu-group">
+          <h4>Contact</h4>
+          <ul>
+            <li>info@port1883.com (예시)</li>
+            <li>Incheon, Korea</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 슬라이더 JS -->
+  <script>
+    (function () {
+      const slides = document.querySelectorAll(".hero-slide");
+      const dots = document.querySelectorAll(".hero-dot");
+      let current = 0;
+      const interval = 5000;
+
+      function goToSlide(index) {
+        slides[current].classList.remove("active");
+        dots[current].classList.remove("active");
+        current = index;
+        slides[current].classList.add("active");
+        dots[current].classList.add("active");
+      }
+
+      function nextSlide() {
+        const nextIndex = (current + 1) % slides.length;
+        goToSlide(nextIndex);
+      }
+
+      let timer = setInterval(nextSlide, interval);
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          clearInterval(timer);
+          goToSlide(index);
+          timer = setInterval(nextSlide, interval);
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

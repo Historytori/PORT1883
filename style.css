@@ -1,716 +1,545 @@
-/* ======================================
-   PORT 1883  ·  GLOBAL STYLE
-====================================== */
-
-:root {
-  --bg: #f5f2ec;
-  --bg-alt: #f9f7f2;
-  --ink: #111827;
-  --muted: #4b5563;
-  --accent: #c48c3c;
-  --border: #d4d4d4;
-  --card-bg: #ffffff;
-}
-
-/* RESET */
-* {
-  margin: 0;
-  padding: 0;
+/* 기본 스타일 */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
+html,
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
-  background-color: var(--bg);
-  color: var(--ink);
-  font-size: 16px;
-  line-height: 1.8;
+  margin: 0;
+  padding: 0;
 }
 
-img {
-  max-width: 100%;
-  display: block;
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Noto Sans KR",
+    "Apple SD Gothic Neo", sans-serif;
+  color: #1c1c1c;
+  background-color: #f3efe5;
+  line-height: 1.6;
 }
 
+/* 링크 */
 a {
   color: inherit;
   text-decoration: none;
 }
 
-button {
-  font: inherit;
+a:hover {
+  text-decoration: underline;
 }
 
-/* 공통 컨테이너 */
-.container {
-  width: 100%;
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
-/* ======================================
-   BRAND INTRO (중앙 로고 + 텍스트)
-====================================== */
-
-.brand-intro {
-  padding: 2.8rem 1.5rem 1.4rem;
-  text-align: center;
-}
-
-.brand-intro-inner {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.7rem;
-}
-
-.brand-intro-logo {
-  width: 110px;
-  height: auto;
-}
-
-.brand-intro-name {
-  font-family: "Playfair Display", serif;
-  font-size: 1.6rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.brand-intro-tagline {
-  font-size: 0.8rem;
-  color: var(--muted);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
-/* ======================================
-   HEADER
-====================================== */
-
-header {
-  position: sticky;
+/* 헤더 */
+.site-header {
+  position: fixed;
   top: 0;
-  z-index: 20;
-  backdrop-filter: blur(12px);
-  background: rgba(245, 242, 236, 0.96);
-  border-bottom: 1px solid rgba(17, 24, 39, 0.06);
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 18px 48px;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  color: #ffffff;
+}
+
+.site-header:hover {
+  background-color: #ffffff;
+  color: #111111;
 }
 
 .header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
-  padding: 0.75rem 0;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
-/* 헤더의 브랜드 블록은 텍스트만 */
-.brand-block {
+.header-left,
+.header-right {
   display: flex;
-  align-items: center;
-  gap: 0.6rem;
+  gap: 18px;
+  font-size: 13px;
 }
 
-.brand-text-main {
-  font-family: "Playfair Display", serif;
-  font-size: 1.1rem;
-  letter-spacing: 0.12em;
+.header-center {
+  text-align: center;
+}
+
+.logo-text {
+  display: block;
+  font-size: 30px;
+  letter-spacing: 0.22em;
+  margin-bottom: 8px;
   text-transform: uppercase;
 }
 
-.brand-text-sub {
-  font-size: 0.78rem;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-}
-
-nav ul {
+.main-nav {
   display: flex;
-  gap: 1.75rem;
-  list-style: none;
-  font-size: 0.86rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
+  gap: 20px;
+  justify-content: center;
+  font-size: 14px;
 }
 
-nav a {
-  position: relative;
-  padding-bottom: 0.3rem;
-  color: #4b5563;
+.main-nav a {
+  text-transform: none;
 }
 
-nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0;
-  height: 1px;
-  background: var(--accent);
-  transition: width 0.25s ease;
-}
-
-nav a:hover::after {
-  width: 100%;
-}
-
-.nav-cta {
-  border: 1px solid rgba(148, 163, 184, 0.8);
-  padding: 0.4rem 0.9rem;
-  border-radius: 999px;
-  font-size: 0.78rem;
-  letter-spacing: 0.16em;
-}
-
-.nav-cta:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-@media (max-width: 768px) {
-  nav ul {
-    gap: 1rem;
-    font-size: 0.78rem;
-  }
-
-  .brand-text-main {
-    font-size: 0.95rem;
-  }
-
-  .brand-text-sub {
-    display: none;
-  }
-}
-
-/* ======================================
-   HERO (전체 블러 + 슬라이드)
-====================================== */
-
+/* 히어로 */
 .hero {
   position: relative;
-  width: 100%;
-  height: min(52vh, 430px);
+  height: 100vh;
+  min-height: 600px;
   overflow: hidden;
-  color: #f9fafb;
 }
 
-/* 전체 히어로에 검은 블러 오버레이 */
-.hero::before {
-  content: "";
+.hero-video {
   position: absolute;
-  inset: 0;
-  background: rgba(5, 5, 10, 0.78);
-  backdrop-filter: blur(6px);
-  z-index: 1;
-}
-
-.hero-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 1.2s ease;
-  z-index: 0;
-}
-
-.hero-slide img {
+  top: 50%;
+  left: 50%;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transform: translate(-50%, -50%);
 }
 
-.hero-slide.active {
-  opacity: 1;
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.6)
+  );
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
   height: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 24px;
   display: flex;
-  align-items: center;
-}
-
-.hero-inner {
-  max-width: 520px;
-  margin-left: 1.5rem;
-}
-
-.hero-panel {
-  background: rgba(15, 23, 42, 0.9);
-  padding: 1.5rem 1.9rem;
-  border-radius: 1.1rem;
-  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.7);
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  color: #ffffff;
 }
 
 .hero-kicker {
-  font-size: 0.78rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  margin-bottom: 0.7rem;
-  color: #e5e7eb;
-}
-
-.hero-title {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(2.05rem, 3.1vw, 2.6rem);
-  line-height: 1.3;
-  margin-bottom: 0.8rem;
-}
-
-.hero-sub {
-  font-size: 0.95rem;
-  color: #e5e7eb;
-  max-width: 32rem;
-  margin-bottom: 1.5rem;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-
-.btn-primary,
-.btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.6rem 1.3rem;
-  border-radius: 999px;
-  font-size: 0.8rem;
+  font-size: 15px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  border: 1px solid transparent;
-  cursor: pointer;
-  transition: all 0.25s ease;
+  margin-bottom: 20px;
 }
 
-.btn-primary {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #111827;
+.hero-logo {
+  width: 190px;
+  margin: 0 auto 24px;
 }
 
-.btn-primary:hover {
-  background: #e9b159;
-  border-color: #e9b159;
+.hero-text {
+  font-size: 15px;
+  margin-bottom: 32px;
 }
 
-.btn-ghost {
-  background: transparent;
-  border-color: rgba(249, 250, 251, 0.6);
-  color: #f9fafb;
+.hero-cta {
+  display: inline-block;
+  padding: 12px 26px;
+  border: 1px solid #ffffff;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background-color: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4px);
 }
 
-.btn-ghost:hover {
-  border-color: var(--accent);
-  color: #fbbf24;
+.hero-cta:hover {
+  background-color: #ffffff;
+  color: #111111;
+  text-decoration: none;
 }
 
-/* 히어로 하단 진행 바 */
-.hero-progress {
+/* 히어로 컨트롤 */
+.hero-controls {
   position: absolute;
-  bottom: 1.1rem;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 32px;
+  bottom: 32px;
   display: flex;
-  gap: 0.5rem;
+  gap: 12px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
   z-index: 3;
 }
 
-.hero-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 999px;
-  background: rgba(249, 250, 251, 0.4);
-  transition: all 0.25s ease;
+.hero:hover .hero-controls {
+  opacity: 1;
 }
 
-.hero-dot.active {
-  width: 16px;
-  background: var(--accent);
+.control-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  font-size: 18px;
+  cursor: pointer;
 }
 
-@media (max-width: 880px) {
-  .hero-inner {
-    margin: 0 1.4rem;
-  }
-
-  .hero {
-    height: 360px;
-  }
+/* 챗봇 위젯 */
+.chat-widget {
+  position: absolute;
+  right: 32px;
+  bottom: 32px;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  z-index: 3;
 }
 
-/* ======================================
-   공통 SECTION
-====================================== */
-
-section {
-  padding: 4rem 0;
+.chat-bubble {
+  max-width: 260px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+  font-size: 12px;
 }
 
-/* hero 제외 배경 번갈아 적용 (너무 지저분하지 않게 연한 톤) */
-section:not(.hero):nth-of-type(odd) {
-  background: var(--bg);
+.chat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid #ffffff;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+  font-size: 20px;
+  cursor: pointer;
 }
 
-section:not(.hero):nth-of-type(even) {
-  background: var(--bg-alt);
+/* 공통 섹션 스타일 */
+.section {
+  padding: 80px 48px;
 }
 
 .section-header {
-  margin-bottom: 2.5rem;
-}
-
-.section-kicker {
-  font-size: 0.8rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 0.6rem;
+  max-width: 960px;
+  margin: 0 auto 40px;
+  text-align: center;
 }
 
 .section-title {
-  font-family: "Playfair Display", serif;
-  font-size: 1.9rem;
-  margin-bottom: 0.9rem;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 16px;
 }
 
-.section-sub {
-  font-size: 0.95rem;
-  color: var(--muted);
+.section-title.align-left {
+  text-align: left;
 }
 
-.section-sub-narrow {
-  max-width: 38rem;
+.section-subtitle {
+  font-size: 15px;
+  color: #535353;
 }
 
-/* ======================================
-   BRAND PHILOSOPHY + JOURNAL
-====================================== */
-
-.philosophy-grid {
-  display: grid;
-  grid-template-columns: 3fr 2.5fr;
-  gap: 3rem;
-  align-items: flex-start; /* 상단 기준 맞춤 */
+.section-anchor {
+  position: relative;
+  top: -80px;
 }
 
-.philosophy-body {
-  font-size: 0.96rem;
-  color: #111827;
-  max-width: 40rem;
+/* 베스트셀러 */
+.section-bestseller {
+  background-color: #f5f2e9;
 }
 
-.philosophy-body p + p {
-  margin-top: 1.2rem;
-}
-
-.philosophy-note {
-  margin-top: 2.1rem;
-  padding-top: 1.6rem;
-  border-top: 1px solid rgba(156, 163, 175, 0.35);
-  font-size: 0.9rem;
-  color: #4b5563;
-}
-
-/* JOURNAL 카드: 잡지·책 느낌 */
-.philosophy-card {
-  background: var(--card-bg);
-  border-radius: 1rem;
-  padding: 1.6rem 1.8rem 1.8rem;
-  border: 1px solid rgba(148, 163, 184, 0.45);
-  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.05);
+.product-row {
+  max-width: 1280px;
+  margin: 0 auto;
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
-
-.journal-image {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  border-radius: 0.8rem;
-  overflow: hidden;
-  margin-bottom: 1rem;
-  background: #e5e7eb;
-}
-
-.journal-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.philosophy-card h3 {
-  font-family: "Playfair Display", serif;
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-}
-
-.journal-lead {
-  font-size: 0.9rem;
-  color: #4b5563;
-  margin-bottom: 0.7rem;
-}
-
-.journal-text {
-  font-size: 0.9rem;
-  color: #111827;
-  margin-bottom: 1.1rem;
-}
-
-/* JOURNAL 버튼 */
-.journal-btn {
-  align-self: flex-start;
-  padding: 0.5rem 1.2rem;
-  border-radius: 999px;
-  border: 1px solid var(--accent);
-  background: transparent;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.journal-btn:hover {
-  background: var(--accent);
-  color: #111827;
-}
-
-@media (max-width: 880px) {
-  .philosophy-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .philosophy-body {
-    max-width: none;
-  }
-}
-
-/* ======================================
-   PRODUCTS
-====================================== */
-
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.8rem;
-}
-
-@media (max-width: 1024px) {
-  .products-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 640px) {
-  .products-grid {
-    grid-template-columns: 1fr;
-  }
+  gap: 40px;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .product-card {
-  background: var(--card-bg);
-  border-radius: 1.2rem;
-  padding: 1.4rem 1.4rem 1.6rem;
-  border: 1px solid rgba(209, 213, 219, 0.8);
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  transition: transform 0.18s ease, box-shadow 0.18s ease,
-    border-color 0.18s ease;
+  flex: 1;
+  min-width: 260px;
+  text-align: center;
 }
 
-.product-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(148, 163, 184, 0.95);
-  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
-}
-
-/* 제품 이미지 */
-.product-image-wrap {
+.product-card img {
   width: 100%;
-  aspect-ratio: 16 / 9;
-  border-radius: 0.9rem;
-  overflow: hidden;
-  background: #e5e7eb;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.product-image-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  display: block;
+  margin-bottom: 18px;
 }
 
 .product-name {
-  font-family: "Playfair Display", serif;
-  font-size: 1.05rem;
-  letter-spacing: 0.12em;
+  font-size: 15px;
+  margin-bottom: 18px;
+}
+
+.product-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  background-color: #111111;
+  color: #ffffff;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.product-btn:hover {
+  opacity: 0.85;
+}
+
+/* 피처 섹션 (기프트 파인더 / 스토어 / 포장) */
+.section-feature {
+  background-color: #f3efe5;
+}
+
+.feature-row {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 56px;
+  align-items: center;
+}
+
+.feature-row-reverse {
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+}
+
+.feature-row-reverse .feature-text {
+  order: 2;
+}
+
+.feature-row-reverse .feature-image {
+  order: 1;
+}
+
+.feature-text {
+  font-size: 15px;
+}
+
+.feature-eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
+  margin-bottom: 10px;
+  color: #8b7d5d;
 }
 
-.product-tagline {
-  font-size: 0.8rem;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
+.feature-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
 
-.product-desc {
-  font-size: 0.9rem;
-  color: #111827;
+.feature-body {
+  font-size: 15px;
+  color: #3d3d3d;
+  margin-bottom: 20px;
 }
 
-.product-footer {
+.feature-cta {
+  display: inline-block;
+  padding: 10px 22px;
+  border: 1px solid #111111;
+  font-size: 14px;
+}
+
+.feature-cta:hover {
+  background-color: #111111;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.feature-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 저널 */
+.section-journal {
+  background-color: #f5f2e9;
+}
+
+.journal-row {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.journal-card {
+  flex: 1;
+  min-width: 260px;
+}
+
+.journal-card img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 14px;
+}
+
+.journal-title-en {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.journal-title-ko {
+  font-size: 15px;
+  color: #4a4a4a;
+}
+
+/* 인용구 */
+.section-quote {
+  text-align: center;
+  padding: 100px 16px 120px;
+  background-color: #f3efe5;
+}
+
+.quote-en {
+  font-size: 22px;
+  font-style: italic;
+  margin-bottom: 16px;
+}
+
+.quote-ko {
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.quote-source {
+  font-size: 13px;
+  letter-spacing: 0.15em;
+}
+
+/* 푸터 */
+.site-footer {
+  position: relative;
+  background-color: #1a1a1a;
+  color: #f2f2f2;
+  padding: 60px 48px 40px;
+  font-size: 13px;
+}
+
+.footer-top {
+  max-width: 1280px;
+  margin: 0 auto 30px;
+  display: flex;
+  gap: 80px;
+  flex-wrap: wrap;
+}
+
+.footer-column {
+  min-width: 220px;
+}
+
+.footer-title {
+  font-size: 15px;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column li {
+  margin-bottom: 8px;
+}
+
+.footer-column a {
+  color: #e2e2e2;
+}
+
+.footer-bottom {
+  max-width: 1280px;
+  margin: 0 auto;
+  border-top: 1px solid #333333;
+  padding-top: 18px;
+}
+
+.footer-bottom a {
+  color: #e2e2e2;
+  text-decoration: underline;
+}
+
+.footer-copy {
+  margin-top: 16px;
+}
+
+.footer-links {
+  margin-top: 10px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-top: 0.4rem;
+  gap: 6px;
 }
 
-.product-price {
-  font-weight: 600;
-  font-size: 0.98rem;
-}
-
-.product-cta {
-  font-size: 0.8rem;
-  padding: 0.45rem 0.9rem;
-  border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.9);
-  background: #f9fafb;
+/* 플로팅 버튼 */
+.floating-btn {
+  position: fixed;
+  right: 26px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid #f2f2f2;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  font-size: 20px;
   cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
+  z-index: 999;
 }
 
-.product-cta:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: #fefce8;
+.floating-top {
+  bottom: 96px;
 }
 
-/* ======================================
-   PACKAGING
-====================================== */
-
-.packaging-section .section-sub-narrow {
-  max-width: 40rem;
+.floating-chat {
+  bottom: 40px;
 }
 
-.packaging-grid {
-  display: grid;
-  grid-template-columns: 3fr 2.5fr;
-  gap: 3rem;
-  align-items: flex-start;
-}
-
-.packaging-text {
-  font-size: 0.95rem;
-  color: #111827;
-}
-
-.packaging-text p + p {
-  margin-top: 1.1rem;
-}
-
-.packaging-donation {
-  font-size: 0.9rem;
-  color: #111827;
-  padding: 1rem 1.1rem;
-  border-radius: 0.9rem;
-  background: #fffbeb;
-  border: 1px solid #facc15;
-}
-
-/* 포장 이미지 */
-.packaging-images {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.2rem;
-}
-
-.packaging-photo {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  border-radius: 1rem;
-  overflow: hidden;
-  background: #e5e7eb;
-  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
-}
-
-.packaging-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-@media (max-width: 880px) {
-  .packaging-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+/* 반응형 */
+@media (max-width: 960px) {
+  .site-header {
+    padding: 16px 16px;
   }
-}
 
-/* ======================================
-   FOOTER
-====================================== */
+  .header-inner {
+    flex-direction: column;
+    gap: 8px;
+  }
 
-footer {
-  padding: 2rem 0 2.8rem;
-  background: #111827;
-  color: #9ca3af;
-  font-size: 0.82rem;
-}
+  .main-nav {
+    flex-wrap: wrap;
+  }
 
-.footer-inner {
-  display: flex;
-  justify-content: space-between;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
+  .section {
+    padding: 64px 20px;
+  }
 
-.footer-brand {
-  max-width: 280px;
-}
+  .feature-row,
+  .feature-row-reverse {
+    grid-template-columns: 1fr;
+  }
 
-.footer-brand-title {
-  font-family: "Playfair Display", serif;
-  font-size: 1.1rem;
-  color: #e5e7eb;
-  margin-bottom: 0.4rem;
-}
+  .feature-row-reverse .feature-text,
+  .feature-row-reverse .feature-image {
+    order: initial;
+  }
 
-.footer-menu {
-  display: flex;
-  gap: 1.8rem;
-  flex-wrap: wrap;
-}
-
-.footer-menu-group h4 {
-  font-size: 0.85rem;
-  color: #e5e7eb;
-  margin-bottom: 0.45rem;
-}
-
-.footer-menu-group ul {
-  list-style: none;
-  display: grid;
-  gap: 0.25rem;
-}
-
-.footer-menu-group a {
-  color: #9ca3af;
-}
-
-.footer-menu-group a:hover {
-  color: #f3f4f6;
+  .product-row,
+  .journal-row {
+    gap: 24px;
+  }
 }

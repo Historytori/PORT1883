@@ -16,10 +16,11 @@
       </div>
 
       <div class="header-center">
-        <a href="#home" class="logo-text">PORT1883</a>
+        <a href="#home" class="logo-wordmark">PORT1883</a>
         <nav class="main-nav">
+          <!-- 나중에 각각 별도 index로 바꾸기 쉽게 href는 임시 앵커 -->
           <a href="#gift-guide">기프트 가이드</a>
-          <a href="#bestseller">신제품 &amp; 추천제품</a>
+          <a href="#bestseller">신제품 &amp; 추천 제품</a>
           <a href="#home">홈</a>
           <a href="#library">라이브러리</a>
           <a href="#search">검색하기</a>
@@ -34,23 +35,25 @@
   </header>
 
   <main>
-    <!-- 히어로 -->
+    <!-- HERO -->
     <section id="home" class="hero">
       <video id="heroVideo" class="hero-video" autoplay muted playsinline></video>
-
       <div class="hero-overlay"></div>
 
       <div class="hero-content">
+        <p className="hero-eyebrow">감각을 깨우는 가장 조용한 순간</p>
         <p class="hero-kicker">잃어버린 시간이 다시 당신의 손에서 시작됩니다</p>
         <img src="images/logo.png" alt="PORT1883 로고" class="hero-logo" />
         <p class="hero-text">
           동인천의 사라진 비누 공장에서 비롯된 오래된 이야기들을 PORT1883은 향과 질감으로 다시 빚어 올립니다.<br />
           비누 한 장을 통해, 없어졌던 것들이 다시 조용히 살아나는 순간을 마주해 보세요.
         </p>
-        <a href="#philosophy" class="hero-cta">PORT1883 브랜드 철학 보기 →</a>
+        <a href="#philosophy" class="btn-outline hero-cta">
+          PORT1883 브랜드 철학 보기 →
+        </a>
       </div>
 
-      <!-- 히어로 컨트롤 -->
+      <!-- HERO 컨트롤 -->
       <div class="hero-controls">
         <button id="playPauseBtn" class="control-btn" aria-label="영상 재생/일시정지">
           ❚❚
@@ -60,22 +63,21 @@
         </button>
       </div>
 
-      <!-- 챗봇 위젯 -->
-      <div class="chat-widget">
-        <div class="chat-bubble">
+      <!-- HERO 챗봇 -->
+      <div class="hero-chat">
+        <div class="hero-chat-bubble">
           PORT1883에 오신 것을 환영합니다.<br />
           도움을 원하시나요?
         </div>
-        <button class="chat-icon" aria-label="챗봇 열기">
+        <button class="hero-chat-icon" aria-label="챗봇 열기">
           💬
         </button>
       </div>
     </section>
 
     <!-- 베스트셀러 & 신제품 -->
-    <section id="bestseller" class="section section-bestseller">
-      <div id="gift-guide" class="section-anchor"></div>
-      <div class="section-header">
+    <section id="bestseller" class="section section-toned">
+      <div class="section-header center">
         <h2 class="section-title">베스트셀러 &amp; 신제품</h2>
         <p class="section-subtitle">
           오랫동안 사랑받아 온 베스트 제품과 다양한 신제품을 만나보세요.<br />
@@ -83,108 +85,146 @@
         </p>
       </div>
 
-      <div class="product-row">
+      <div class="grid-3 product-grid">
+        <!-- 1 -->
         <article class="product-card">
-          <img src="images/bestseller1.png" alt="Port1883 베스트셀러 선물 꾸러미 키트" />
-          <h3 class="product-name">Port1883의 베스트셀러만 모은 선물 꾸러미키트</h3>
-          <button class="product-btn">장바구니에 담기</button>
+          <div class="product-image-wrapper">
+            <img
+              src="images/bestseller1.png"
+              alt="Port1883의 베스트셀러만 모은 선물 꾸러미 키트"
+            />
+          </div>
+          <h3 class="product-name">
+            Port1883의 베스트셀러만 모은 선물 꾸러미키트
+          </h3>
+          <button class="btn-solid product-btn">장바구니에 담기</button>
         </article>
 
+        <!-- 2 -->
         <article class="product-card">
-          <img src="images/bestseller2.png" alt="Port1883 SORAESALT 비누" />
-          <h3 class="product-name">Port1883의 베스트셀러 비누, SORAESALT 비누</h3>
-          <button class="product-btn">장바구니에 담기</button>
+          <div class="product-image-wrapper">
+            <img
+              src="images/bestseller2.png"
+              alt="Port1883의 베스트셀러 비누, SORAESALT 비누"
+            />
+          </div>
+          <h3 class="product-name">
+            Port1883의 베스트셀러 비누, SORAESALT 비누
+          </h3>
+          <button class="btn-solid product-btn">장바구니에 담기</button>
         </article>
 
+        <!-- 3 -->
         <article class="product-card">
-          <img src="images/bestseller3.png" alt="Port1883 휴대용 튜브 비누 튜브" />
-          <h3 class="product-name">Port1883만의 특별 제품, 휴대용 튜브 비누튜브</h3>
-          <button class="product-btn">장바구니에 담기</button>
+          <div class="product-image-wrapper">
+            <img
+              src="images/bestseller3.png"
+              alt="Port1883만의 특별 제품, 휴대용 튜브 비누튜브"
+            />
+          </div>
+          <h3 class="product-name">
+            Port1883만의 특별 제품, 휴대용 튜브 비누튜브
+          </h3>
+          <button class="btn-solid product-btn">장바구니에 담기</button>
         </article>
       </div>
     </section>
 
     <!-- 선물 선택을 돕는 작은 안내서 -->
-    <section class="section section-feature">
+    <section id="gift-guide" class="section">
       <div class="feature-row">
         <div class="feature-text">
-          <p class="feature-eyebrow">기프트 파인더</p>
+          <p class="feature-label">기프트 파인더</p>
           <h2 class="feature-title">선물 선택을 돕는 작은 안내서</h2>
           <p class="feature-body">
-            선물이 필요하지만 어디서부터 골라야 할지 망설여지신다면, PORT1883의 간단한 추천 도구가 길잡이가 되어드립니다.
-            몇 가지 질문에 답하면, 받는 분의 취향에 어울리는 비누를 제안해드립니다.
+            선물이 필요하지만 어디서부터 골라야 할지 망설여지신다면, PORT1883의
+            간단한 추천 도구가 길잡이가 되어드립니다. 몇 가지 질문에 답하면,
+            받는 분의 취향에 어울리는 비누를 제안해드립니다.
           </p>
-          <a href="#gift-tool" class="feature-cta">선물 추천 보기 →</a>
+          <a href="#gift-tool" class="btn-outline">선물 추천 보기 →</a>
         </div>
         <div class="feature-image">
-          <img src="images/guide-gift.png" alt="선물 보자기를 들고 있는 손" />
+          <!-- 자유롭게 파일명 바꿔도 됨 -->
+          <img src="images/guide-gift.png" alt="선물 포장을 쥔 손" />
         </div>
       </div>
     </section>
 
     <!-- 스토어 로케이터 -->
-    <section id="store-locator" class="section section-feature">
+    <section id="store-locator" class="section section-toned">
       <div class="feature-row feature-row-reverse">
-        <div class="feature-image">
-          <img src="images/store-locator.png" alt="선물 상자를 건네는 손" />
-        </div>
         <div class="feature-text">
           <h2 class="feature-title">스토어 로케이터</h2>
           <p class="feature-body">
-            PORT1883 오프라인 스토어에서는 로컬 크리에이터가 고객님을 맞이합니다. 비누의 향과 질감, 공간의 이야기까지 함께
-            어우러진 맞춤형 컨설팅으로 특별한 선물 선택을 도와드립니다.
+            PORT1883 오프라인 스토어에서는 로컬 크리에이터가 고객님을 맞이합니다.
+            비누의 향과 질감, 공간의 이야기까지 함께 어우러진 맞춤형 컨설팅으로
+            특별한 선물 선택을 도와드립니다.
           </p>
-          <a href="#stores" class="feature-cta">오프라인 스토어 찾기 →</a>
+          <a href="#stores" class="btn-outline">오프라인 스토어 찾기 →</a>
+        </div>
+        <div class="feature-image">
+          <img src="images/store-locator.png" alt="선물 상자를 건네는 손" />
         </div>
       </div>
     </section>
 
-    <!-- 포장 안내 -->
-    <section class="section section-feature">
+    <!-- 포장 -->
+    <section class="section">
       <div class="feature-row">
         <div class="feature-text">
           <h2 class="feature-title">섬세한 선물의 마지막 층위, 포장</h2>
           <p class="feature-body">
-            비누를 감싸는 종이는 단순한 포장이 아니라 전달하려는 마음의 깊이를 세밀하게 드러냅니다. PORT1883에서는 디자인을
-            직접 고르실 수 있습니다. 독립공채 포장을 선택하시면 판매 수익의 일부가 일본군 ‘위안부’ 피해자 및 강제징용 피해자
-            지원 재단에 기부됩니다.
+            비누를 감싸는 종이는 단순한 포장이 아니라 전달하려는 마음의 깊이를
+            세밀하게 드러냅니다. PORT1883에서는 디자인을 직접 고르실 수 있습니다.
+            독립공채 포장을 선택하시면 판매 수익의 일부가 일본군 ‘위안부’ 피해자
+            및 강제징용 피해자 지원 재단에 기부됩니다.
           </p>
-          <a href="#wrapping" class="feature-cta">포장 디자인 보기 →</a>
+          <a href="#wrapping" class="btn-outline">포장 디자인 보기 →</a>
         </div>
         <div class="feature-image">
-          <img src="images/wrapping.png" alt="포장지와 비누 이미지" />
+          <img src="images/wrapping.png" alt="다양한 포장 디자인" />
         </div>
       </div>
     </section>
 
-    <!-- PORT1883 JOURNAL -->
-    <section id="library" class="section section-journal">
+    <!-- JOURNAL -->
+    <section id="library" class="section section-toned">
       <div class="section-header">
         <h2 class="section-title align-left">PORT1883 JOURNAL</h2>
       </div>
 
-      <div class="journal-row">
+      <div class="grid-3 journal-grid">
         <article class="journal-card">
-          <img src="images/journal1.png" alt="사라진 건축을 배경으로 한 인물 실루엣" />
+          <div class="journal-image">
+            <img src="images/journal1.png" alt="동인천의 밤하늘을 배경으로 한 인물 실루엣" />
+          </div>
           <h3 class="journal-title-en">The Vanished Heritage</h3>
-          <p class="journal-title-ko">사라진 유산들: 동인천의 잊힌 건축을 따라 걷다</p>
+          <p class="journal-title-ko">
+            사라진 유산들: 동인천의 잊힌 건축을 따라 걷다
+          </p>
         </article>
 
         <article class="journal-card">
-          <img src="images/journal2.png" alt="소래염전과 비누 이미지" />
+          <div class="journal-image">
+            <img src="images/journal2.png" alt="소래염전과 손" />
+          </div>
           <h3 class="journal-title-en">Salt &amp; Silence</h3>
-          <p class="journal-title-ko">소래염전이 남긴 빛과 바람의 기록</p>
+          <p class="journal-title-ko">
+            소래염전이 남긴 빛과 바람의 기록
+          </p>
         </article>
 
         <article class="journal-card">
-          <img src="images/journal3.png" alt="항구 풍경과 실내 조명" />
+          <div class="journal-image">
+            <img src="images/journal3.png" alt="항구가 보이는 실내 풍경" />
+          </div>
           <h3 class="journal-title-en">The Port that Remains</h3>
           <p class="journal-title-ko">향으로 복원된 인천의 역사</p>
         </article>
       </div>
     </section>
 
-    <!-- 브랜드 철학 인용구 -->
+    <!-- 브랜딩 문장 -->
     <section id="philosophy" class="section section-quote">
       <p class="quote-en">
         “What steadies you most is often the quietest of things.”
@@ -232,23 +272,18 @@
         사업자 번호 : 000-00-00000 통신판매업신고 : 0000-인천중구-000000
         <a href="#biz-info">사업자정보확인하기</a>
       </p>
-      <p>
-        주소 : 인천광역시 중구 차이나타운로 59번길 3 | 대표전화 : 032)000-000
-      </p>
+      <p>주소 : 인천광역시 중구 차이나타운로 59번길 3 | 대표전화 : 032)000-000</p>
       <p class="footer-copy">© PORT1883</p>
 
       <div class="footer-links">
-        <a href="#terms">이용약관</a>
-        <span>·</span>
-        <a href="#sitemap">사이트맵</a>
-        <span>·</span>
-        <a href="#privacy">개인정보처리방침</a>
-        <span>·</span>
+        <a href="#terms">이용약관</a><span>·</span>
+        <a href="#sitemap">사이트맵</a><span>·</span>
+        <a href="#privacy">개인정보처리방침</a><span>·</span>
         <a href="#cookie-settings">쿠키 설정</a>
       </div>
     </div>
 
-    <!-- 우측 플로팅 버튼들 -->
+    <!-- 우측 플로팅 버튼 -->
     <button class="floating-btn floating-top" aria-label="페이지 상단으로 이동">
       ↑
     </button>
@@ -257,7 +292,7 @@
     </button>
   </footer>
 
-  <!-- 간단 스크립트 -->
+  <!-- 최소한의 스크립트 -->
   <script>
     // 히어로 비디오 플레이리스트
     const heroVideo = document.getElementById("heroVideo");
@@ -295,7 +330,7 @@
       muteBtn.textContent = heroVideo.muted ? "🔇" : "🔊";
     });
 
-    // 플로팅 상단 버튼
+    // 상단 이동 버튼
     const topBtn = document.querySelector(".floating-top");
     topBtn.addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
